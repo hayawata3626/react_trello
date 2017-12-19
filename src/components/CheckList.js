@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 class CheckList extends Component {
   render() {
     const tasks = this.props.tasks.map(task => (

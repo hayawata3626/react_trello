@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import List from './List';
 import PropTypes from 'prop-types';
 
+const status = {
+  todo: 0,
+  progress: 1,
+  done: 2
+}
+
 class KanbanBoard extends Component {
   constructor(){
     super();
@@ -12,7 +18,7 @@ class KanbanBoard extends Component {
           title:'Read the Book',
           description: 'I should read the whole book',
           color: '#BD8D31',
-          status: 'progress',
+          status: status.progress,
           tasks: []
         }
       ]
@@ -20,23 +26,27 @@ class KanbanBoard extends Component {
   }
   toNextStatus(id) {
     const targetCard = this.state.cardList.find(card => card.id === id)
-    targetCard.status = "done"
+    if(targetCard.status === status.done) return;
+    targetCard.status = targetCard.status+1
     this.setState({cardList: [targetCard]})
+
   }
   toPrevStatus(id) {
     const targetCard = this.state.cardList.find(card => card.id === id)
-    targetCard.status = "todo"
+    if(targetCard.status === status.todo) return;
+    targetCard.status = targetCard.status-1
     this.setState({cardList: [targetCard]})
   }
 
   render(){
+    // debugger;
     return (
       <div className="app">
         <List
           id="todo"
           title="To Do"
           cards={
-            this.state.cardList.filter(card => card.status === 'todo')
+            this.state.cardList.filter(card => card.status === status.todo)
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
@@ -45,7 +55,7 @@ class KanbanBoard extends Component {
           id="in-progress"
           title="In Progress"
           cards={
-            this.state.cardList.filter(card => card.status === 'progress')
+            this.state.cardList.filter(card => card.status === status.progress)
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
@@ -55,7 +65,7 @@ class KanbanBoard extends Component {
           id="done"
           title="Done"
           cards={
-            this.state.cardList.filter(card => card.status === 'done')
+            this.state.cardList.filter(card => card.status === status.done)
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
