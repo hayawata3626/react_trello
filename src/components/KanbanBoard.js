@@ -1,57 +1,33 @@
 import React, { Component } from 'react';
 import List from './List';
-import PropTypes from 'prop-types';
-
-const status = {
-  todo: 0,
-  progress: 1,
-  done: 2
-}
+import CardModal from './CardModal';
+import '../css/Kanban.css';
+import {status, Card} from '../model/card';
 
 class KanbanBoard extends Component {
   constructor(){
     super();
     this.state = {
-      cardList: [
-        {
-          id:1,
-          title:'免許の更新',
-          description: '試験開場へ行く',
-          color: '#BD8D31',
-          status: status.todo,
-          tasks: []
-        },
-        {
-          id:2,
-          title:'髪を切る',
-          description: '原宿へ行く',
-          color: '#BD8D31',
-          status: status.progress,
-          tasks: []
-        },
-        {
-          id:3,
-          title:'Reactを開発する',
-          description: 'porpsを勉強する',
-          color: '#BD8D31',
-          status: status.done,
-          tasks: []
-        },
-        {
-          id:4,
-          title:'Read the Book',
-          description: 'I should read the whole book',
-          color: '#BD8D31',
-          status: status.progress,
-          tasks: []
-        }
-      ]
+      needModal: false,
+      cardList: []
     }
+  }
+
+  addCard(title, description) {
+    const card = new Card(
+       title, description, "#BD8D31"
+    );
+    this.state.cardList.push(card);
+    this.setState({
+      cardList: this.state.cardList
+    })
   }
 
   toNextStatus(id) {
     const cards = this.state.cardList.map(card => {
-      if (card.id === id) card.status = card.status + 1;
+      if (card.id === id && card.status !== status.done) {
+        card.status = card.status + 1;
+      }
       return card;
     })
     this.setState({cardList: cards});
@@ -59,10 +35,16 @@ class KanbanBoard extends Component {
 
   toPrevStatus(id) {
     const cards = this.state.cardList.map(card => {
-      if (card.id === id) card.status = card.status - 1;
+      if (card.id === id && card.status !== status.todo) {
+        card.status = card.status - 1;
+      }
       return card;
     })
     this.setState({cardList: cards});
+  }
+
+  changeModal(state){
+    this.setState({needModal: state})
   }
 
   render(){
@@ -70,7 +52,6 @@ class KanbanBoard extends Component {
       <div className="app">
         <h1 className="pageTitle">Like a Trello</h1>
         <List
-          id="todo"
           title="To Do"
           cards={
             this.state.cardList.filter(card => card.status === status.todo)
@@ -79,7 +60,6 @@ class KanbanBoard extends Component {
           toPrevStatus={this.toPrevStatus.bind(this)}
         />
         <List
-          id="in-progress"
           title="In Progress"
           cards={
             this.state.cardList.filter(card => card.status === status.progress)
@@ -88,13 +68,18 @@ class KanbanBoard extends Component {
           toPrevStatus={this.toPrevStatus.bind(this)}
         />
         <List
-          id="done"
           title="Done"
           cards={
             this.state.cardList.filter(card => card.status === status.done)
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
+        />
+        <div className="newEdit" onClick={() => this.changeModal(true)}></div>
+        <CardModal
+          className={this.state.needModal ? "mordal" : "hide"}
+          changeModal={this.changeModal.bind(this)}
+          addCard={this.addCard.bind(this)}
         />
       </div>
     )

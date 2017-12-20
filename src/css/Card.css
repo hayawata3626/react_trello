@@ -27,6 +27,12 @@
   width: 100px;
   padding: 10px 30px;
   margin-top: 20px;
+  opacity: 1;
+  transition: opacity .5s;
+  cursor: pointer;
+}
+.cardButton:hover {
+  opacity: .7;
 }
 
 .cardButton + .cardButton {
