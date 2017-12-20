@@ -21,7 +21,7 @@ class CardModal extends Component {
     return(
       <div className="mordal" className={this.props.className}>
         <div className="mordal_content">
-          <h2 className="mordal_title">Hello</h2>
+          <h2 className="mordal_title">{this.props.title}</h2>
           <input
             type="text"
             name="text"

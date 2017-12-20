@@ -80,6 +80,7 @@ class KanbanBoard extends Component {
           className={this.state.needModal ? "mordal" : "hide"}
           changeModal={this.changeModal.bind(this)}
           addCard={this.addCard.bind(this)}
+          title={"Add Card"}
         />
       </div>
     )
