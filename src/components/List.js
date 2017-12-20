@@ -11,18 +11,13 @@ class List extends Component {
     this.props.toPrevStatus(id)
   }
   render() {
-    const cards = this.props.cards.map(card => {
+    const cards = this.props.cards.map((card, index) => {
       return (
         <Card
-          id={card.id}
-          title={card.title}
-          key={card.id}
-          description={card.description}
-          color={card.color}
-          tasks={card.tasks}
-          status={card.status}
+          card={card}
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
+          key={index}
         />
       );
     });

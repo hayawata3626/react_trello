@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import CheckList from './CheckList';
 import PropTypes from 'prop-types';
-import css from './../App.css';
+import css from '../css/Card.css';
 
 
 class Card extends Component {
@@ -19,8 +18,7 @@ class Card extends Component {
     if (this.state.showDetails){
       cardDetails = (
         <div className="card__details">
-          {this.props.description}
-           <CheckList cardId={this.props.id} tasks={this.props.tasks} />
+          {this.props.card.description}
         </div>
       );
     }
@@ -31,7 +29,7 @@ class Card extends Component {
       bottom: 0,
       left: 0,
       width: 7,
-      backgroundColor: this.props.color
+      backgroundColor: this.props.card.color
     };
     return (
       <div className="card">
@@ -40,11 +38,11 @@ class Card extends Component {
           className={this.state.showDetails ? 'card__title card__title--is-open' : 'card__title'}
           onClick={this.toggleDetails.bind(this)}
           role="presentation">
-          {this.props.title}
+          {this.props.card.title}
         </div>
         {cardDetails}
-        <button className="cardButton prev" onClick={() => this.props.toPrevStatus(this.props.id)}>Previous</button>
-        <button className="cardButton next" onClick={() => this.props.toNextStatus(this.props.id)}>Next</button>
+        <button className="cardButton prev" onClick={() => this.props.toPrevStatus(this.props.card.id)}>Previous</button>
+        <button className="cardButton next" onClick={() => this.props.toNextStatus(this.props.card.id)}>Next</button>
       </div>
      );
   }
@@ -75,11 +73,7 @@ customPropType.isRequired = createCustomPropType(true);
 
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: customPropType.isRequired,
-  description: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  card: PropTypes.object.isRequired
 };
 
 export default Card;

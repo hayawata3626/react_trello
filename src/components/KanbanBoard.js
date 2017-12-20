@@ -15,6 +15,30 @@ class KanbanBoard extends Component {
       cardList: [
         {
           id:1,
+          title:'免許の更新',
+          description: '試験開場へ行く',
+          color: '#BD8D31',
+          status: status.todo,
+          tasks: []
+        },
+        {
+          id:2,
+          title:'髪を切る',
+          description: '原宿へ行く',
+          color: '#BD8D31',
+          status: status.progress,
+          tasks: []
+        },
+        {
+          id:3,
+          title:'Reactを開発する',
+          description: 'porpsを勉強する',
+          color: '#BD8D31',
+          status: status.done,
+          tasks: []
+        },
+        {
+          id:4,
           title:'Read the Book',
           description: 'I should read the whole book',
           color: '#BD8D31',
@@ -24,24 +48,27 @@ class KanbanBoard extends Component {
       ]
     }
   }
-  toNextStatus(id) {
-    const targetCard = this.state.cardList.find(card => card.id === id)
-    if(targetCard.status === status.done) return;
-    targetCard.status = targetCard.status+1
-    this.setState({cardList: [targetCard]})
 
+  toNextStatus(id) {
+    const cards = this.state.cardList.map(card => {
+      if (card.id === id) card.status = card.status + 1;
+      return card;
+    })
+    this.setState({cardList: cards});
   }
+
   toPrevStatus(id) {
-    const targetCard = this.state.cardList.find(card => card.id === id)
-    if(targetCard.status === status.todo) return;
-    targetCard.status = targetCard.status-1
-    this.setState({cardList: [targetCard]})
+    const cards = this.state.cardList.map(card => {
+      if (card.id === id) card.status = card.status - 1;
+      return card;
+    })
+    this.setState({cardList: cards});
   }
 
   render(){
-    // debugger;
     return (
       <div className="app">
+        <h1 className="pageTitle">Like a Trello</h1>
         <List
           id="todo"
           title="To Do"
@@ -50,7 +77,7 @@ class KanbanBoard extends Component {
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
-        />,
+        />
         <List
           id="in-progress"
           title="In Progress"
@@ -59,8 +86,7 @@ class KanbanBoard extends Component {
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
-
-        />,
+        />
         <List
           id="done"
           title="Done"
@@ -69,7 +95,6 @@ class KanbanBoard extends Component {
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
-
         />
       </div>
     )
