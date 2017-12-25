@@ -9,7 +9,8 @@ class KanbanBoard extends Component {
     super();
     this.state = {
       needModal: false,
-      cardList: []
+      cardList: [],
+      cardInModal: new Card("", "", "#BD8D31")
     }
   }
 
@@ -43,8 +44,11 @@ class KanbanBoard extends Component {
     this.setState({cardList: cards});
   }
 
-  changeModal(state){
-    this.setState({needModal: state})
+  changeModal(state, card){
+    this.setState({
+      needModal: state,
+      cardInModal: card || new Card("", "", "#BD8D31")
+    })
   }
 
   render(){
@@ -58,6 +62,7 @@ class KanbanBoard extends Component {
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
+          changeModal={this.changeModal.bind(this)}
         />
         <List
           title="In Progress"
@@ -66,6 +71,7 @@ class KanbanBoard extends Component {
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
+          changeModal={this.changeModal.bind(this)}
         />
         <List
           title="Done"
@@ -74,12 +80,14 @@ class KanbanBoard extends Component {
           }
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
+          changeModal={this.changeModal.bind(this)}
         />
         <div className="newEdit" onClick={() => this.changeModal(true)}></div>
         <CardModal
           className={this.state.needModal ? "mordal" : "hide"}
           changeModal={this.changeModal.bind(this)}
           addCard={this.addCard.bind(this)}
+          card={this.state.cardInModal}
           title={"Add Card"}
         />
       </div>

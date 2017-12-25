@@ -25,10 +25,11 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  cursor: pointer;
   background: #000;
   color: #fff;
   right: 4%;
-  top: 15%;
+  top: 7%;
 }
 
 .mordal_closeButton:before {

@@ -43,6 +43,7 @@ class Card extends Component {
         {cardDetails}
         <button className="cardButton prev" onClick={() => this.props.toPrevStatus(this.props.card.id)}>Previous</button>
         <button className="cardButton next" onClick={() => this.props.toNextStatus(this.props.card.id)}>Next</button>
+        <button className="cardButton edit" onClick={() => this.props.changeModal(true, this.props.card)}>Edit</button>
       </div>
      );
   }

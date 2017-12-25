@@ -18,6 +18,7 @@ class List extends Component {
           toNextStatus={this.toNextStatus.bind(this)}
           toPrevStatus={this.toPrevStatus.bind(this)}
           key={index}
+          changeModal={this.props.changeModal}
         />
       );
     });

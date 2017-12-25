@@ -47,3 +47,7 @@
   background: green;
   color: #fff;
 }
+.cardButton.edit {
+  background: #0079bf;
+  color: #fff;
+}

@@ -27,7 +27,7 @@ class CardModal extends Component {
             name="text"
             className="mordalContent_title"
             placeholder="タイトル"
-            value={this.state.title}
+            value={this.props.card.title || this.state.title}
             onChange={(e) => this.setState({title: e.target.value})}
           />
           <input
