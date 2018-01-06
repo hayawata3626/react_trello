@@ -2,6 +2,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  CHANGE_TODO_STATE,
 } from '../constants/ActionTypes'
 
 export const status = {
@@ -43,6 +44,17 @@ export default function todos(state = initialState, action) {
           { ...todo, text: action.text } :
           todo
       )
+
+    case CHANGE_TODO_STATE:
+      return state.map(todo => {
+        if (todo.id === action.id) {
+          if ( (todo.status + action.state) < 0) return todo;
+          if ( (todo.status + action.state) > 2) return todo;
+          return { ...todo, status: todo.status + action.state }
+        } else {
+          return todo
+        }
+      })
 
     default:
       return state

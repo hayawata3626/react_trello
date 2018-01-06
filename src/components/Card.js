@@ -33,8 +33,12 @@ class Card extends Component {
           {this.props.todo.title}
         </div>
         {todoDetails}
-        <button className="cardButton prev">Previous</button>
-        <button className="cardButton next">Next</button>
+        <button className="cardButton prev" onClick={() =>
+          this.props.actions.changeTodoState(this.props.todo.id, -1)
+        }>Previous</button>
+        <button className="cardButton next" onClick={() =>
+          this.props.actions.changeTodoState(this.props.todo.id, 1)
+        }>Next</button>
         <button className="cardButton edit">Edit</button>
       </div>
      );
@@ -42,7 +46,8 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  todo: PropTypes.object.isRequired
+  todo: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 export default Card;

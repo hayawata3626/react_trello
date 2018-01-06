@@ -6,7 +6,13 @@ import PropTypes from 'prop-types';
 class List extends Component {
   render() {
     const todos = this.props.todos.map((todo, index) => {
-      return ( <Card todo={todo} key={index} /> );
+      return (
+        <Card
+        todo={todo}
+        key={index}
+        actions={this.props.actions}
+        />
+      );
     });
 
     return (
@@ -22,6 +28,7 @@ class List extends Component {
 List.propTypes = {
   title: PropTypes.string.isRequired,
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 

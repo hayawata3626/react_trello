@@ -1,5 +1,6 @@
 export const ADD_TODO = 'ADD_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 export const EDIT_TODO = 'EDIT_TODO'
+export const CHANGE_TODO_STATE = 'CHANGE_TODO_STATE'
 
 export const CHANGE_MODAL_STATE = 'CHANGE_MODAL_STATE'
