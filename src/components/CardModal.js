@@ -10,6 +10,10 @@ class CardModal extends Component {
     }
   }
 
+  componentDidMount() {
+    document.body.addEventListener('click', () => this.props.closeModal(false));
+  }
+
   render(){
     return(
       <div className="mordal" className={this.props.className}>
@@ -33,7 +37,6 @@ class CardModal extends Component {
           />
           <button
             className="mordal_submit"
-            submit
           >
           </button>
         </div>
