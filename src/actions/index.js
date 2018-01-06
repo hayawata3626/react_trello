@@ -9,5 +9,4 @@ export const addTodo = (title, description) => {
 }
 export const editTodo = (id, text) => ({ type: types.EDIT_TODO, id, text })
 
-export const openModal = (state) => ({type: types.OPEN_MODAL, state})
-export const closeModal = (state) => ({type: types.CLOSE_MODAL, state})
+export const changeModalState = (state) => ({type: types.CHANGE_MODAL_STATE, state})

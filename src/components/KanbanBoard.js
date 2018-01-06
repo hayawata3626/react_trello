@@ -30,10 +30,10 @@ class KanbanBoard extends Component {
           title="Done"
           todos={this.props.todos.filter(card => card.status === status.done)}
         />
-        <div className="newEdit" onClick={() => this.props.actions.openModal()}></div>
+        <div className="newEdit" onClick={() => this.props.actions.changeModalState(true)}></div>
         <CardModal
           className={this.props.modal.state ? "mordal" : "hide"}
-          closeModal={this.props.actions.closeModal}
+          changeModalState={this.props.actions.changeModalState}
         />
       </div>
     )

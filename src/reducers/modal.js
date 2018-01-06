@@ -1,4 +1,4 @@
-import {OPEN_MODAL, CLOSE_MODAL} from '../constants/ActionTypes'
+import {CHANGE_MODAL_STATE} from '../constants/ActionTypes'
 
 const initialState = {
   state: false,
@@ -6,10 +6,8 @@ const initialState = {
 
 export default function modal(state = initialState, action) {
   switch (action.type) {
-    case OPEN_MODAL:
-      return { state: true }
-    case CLOSE_MODAL:
-      return { state: false }
+    case CHANGE_MODAL_STATE:
+      return { state: action.state }
     default:
       return state;
   }

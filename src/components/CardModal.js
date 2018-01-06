@@ -11,7 +11,7 @@ class CardModal extends Component {
   }
 
   componentDidMount() {
-    document.body.addEventListener('click', () => this.props.closeModal(false));
+    document.body.addEventListener('click', () => this.props.changeModalState(false));
   }
 
   render(){
