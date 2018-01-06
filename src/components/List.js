@@ -4,29 +4,15 @@ import PropTypes from 'prop-types';
 
 
 class List extends Component {
-  toNextStatus(id) {
-    this.props.toNextStatus(id)
-  }
-  toPrevStatus(id) {
-    this.props.toPrevStatus(id)
-  }
   render() {
-    const cards = this.props.cards.map((card, index) => {
-      return (
-        <Card
-          card={card}
-          toNextStatus={this.toNextStatus.bind(this)}
-          toPrevStatus={this.toPrevStatus.bind(this)}
-          key={index}
-          changeModal={this.props.changeModal}
-        />
-      );
+    const todos = this.props.todos.map((todo, index) => {
+      return ( <Card todo={todo} key={index} /> );
     });
 
     return (
       <div className="list">
         <h1>{this.props.title}</h1>
-        {cards}
+        {todos}
       </div>
     );
   }
@@ -35,7 +21,7 @@ class List extends Component {
 
 List.propTypes = {
   title: PropTypes.string.isRequired,
-  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 
