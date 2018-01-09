@@ -5,5 +5,5 @@ export const editTodo = (id, title, description) => ({ type: types.EDIT_TODO, id
 export const changeTodoState = (id, state) => ({ type: types.CHANGE_TODO_STATE, id, state})
 export const changeTodoEditable = (id, state) => ({type: types.CHANGE_TODO_EDITABLE, id, state})
 
-export const changeModalState = (state) => ({type: types.CHANGE_MODAL_STATE, state})
-export const newModalState = (state) => ({type: types.NEW_MODAL_STATE, state})
+export const changeNewModalState = (state) => ({type: types.CHANGE_NEW_MODAL_STATE, state})
+export const changeEditModalState = (state) => ({type: types.CHANGE_EDIT_MODAL_STATE, state})

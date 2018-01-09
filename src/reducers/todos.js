@@ -4,7 +4,6 @@ import {
   EDIT_TODO,
   CHANGE_TODO_STATE,
   CHANGE_TODO_EDITABLE,
-  NEW_MODAL_STATE
 } from '../constants/ActionTypes'
 
 export const status = {
@@ -39,8 +38,9 @@ export default function todos(state = initialState, action) {
       )
 
     case EDIT_TODO:
+      console.log(action);
       return state.map(todo =>
-        todo.id === action.id ? { ...todo, id: action.id, text: action.text, description: action.description } : todo
+        todo.id === action.id ? { ...todo, title: action.title, description: action.description } : todo
       )
 
     case CHANGE_TODO_EDITABLE:

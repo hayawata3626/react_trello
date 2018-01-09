@@ -41,7 +41,7 @@ class Card extends Component {
         }>Next</button>
         <button className="cardButton edit"
           onClick={() => {
-            this.props.actions.changeModalState(true);
+            this.props.actions.changeEditModalState(true);
             this.props.actions.changeTodoEditable(this.props.todo.id, this.props.todo);
           }}>
           Edit

@@ -12,7 +12,7 @@ class CardNewModal extends Component {
 
   componentDidMount() {
     const $closeMordalEl = document.getElementById("closeMordalEl")
-    $closeMordalEl.addEventListener('click', () => this.props.actions.changeModalState(false));
+    $closeMordalEl.addEventListener('click', () => this.props.actions.changeNewModalState(false));
     this.clearText();
   }
 
@@ -47,7 +47,7 @@ class CardNewModal extends Component {
           <div
             className="mordal_closeButton"
             onClick={() => {
-              this.props.actions.changeModalState(false);
+              this.props.actions.changeNewModalState(false);
               this.props.actions.changeTodoEditable(this.props.todo.id, this.props.todo.status);
             }}
           />
@@ -55,7 +55,7 @@ class CardNewModal extends Component {
             className="mordal_submit"
             onClick={(e) => {
               e.preventDefault();
-              this.props.actions.changeModalState(false);
+              this.props.actions.changeNewModalState(false);
               this.props.actions.addTodo(this.state.title, this.state.description);
               this.clearText();
             }}>

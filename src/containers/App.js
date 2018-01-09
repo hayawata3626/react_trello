@@ -5,23 +5,23 @@ import { connect } from 'react-redux'
 import * as TodoActions from '../actions'
 import KanbanBoard from '../components/KanbanBoard'
 
-const App = ({todos, modal, actions}) => (
+const App = ({todos, newModal, editModal, actions}) => (
   <div>
-    <KanbanBoard todos={todos} modal={modal} actions={actions} />
+    <KanbanBoard todos={todos} newModal={newModal} editModal={editModal} actions={actions} />
   </div>
 )
 
 App.propTypes = {
   todos: PropTypes.array.isRequired,
-  modal: PropTypes.object.isRequired,
-  newmodal: PropTypes.object.isRequired,
+  newModal: PropTypes.object.isRequired,
+  editModal: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   todos: state.todos,
-  modal: state.modal,
-  newmodal : state.newmodal
+  newModal: state.newModal,
+  editModal: state.editModal,
 })
 
 const mapDispatchToProps = dispatch => ({
