@@ -22,14 +22,14 @@ const initialState = [
     tasks: []
   }
 ]
-
+let id = 1;
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
       const todo = Object.assign({}, initialState[0]);
       todo.title = action.title
       todo.description = action.description
-      todo.id++;
+      todo.id = id++;
       return [...state, todo];
 
     case DELETE_TODO:
