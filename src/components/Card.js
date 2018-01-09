@@ -24,6 +24,7 @@ class Card extends Component {
     }
     return (
       <div className="card">
+        <div className="card__deleteButton"></div>
         <div className="card__decorationColor"/>
         <div
           className={this.state.showDetails ? 'card__title card__title--is-open' : 'card__title'}
