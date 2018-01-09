@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Mordal.css'
 
-class CardModal extends Component {
+class CardNewModal extends Component {
   constructor(){
     super();
     this.state = {
@@ -24,8 +24,6 @@ class CardModal extends Component {
   }
 
   render(){
-    const title = this.props.todo ? this.props.todo.title : this.state.title;
-    const description = this.props.todo ? this.props.todo.description : this.state.description;
     return(
       <div className="mordal" className={this.props.className} >
         <div className="mordal_content" id="mordalContent">
@@ -34,7 +32,7 @@ class CardModal extends Component {
             type="text"
             className="mordalContent_title"
             placeholder="タイトル"
-            value={title}
+            value={this.props.todo.title}
             onChange={(e) => this.setState({title: e.target.value})}
 
           />
@@ -42,7 +40,7 @@ class CardModal extends Component {
             type="textarea"
             className="mordalContent_descriptiton"
             placeholder="文章"
-            value={description}
+            value={this.props.todo.description}
             onChange={(e) => this.setState({description: e.target.value})}
 
           />
@@ -70,4 +68,4 @@ class CardModal extends Component {
   }
 }
 
-export default CardModal;
+export default CardNewModal;

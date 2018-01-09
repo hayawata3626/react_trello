@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import List from './List';
 import CardModal from './CardModal';
+import CardNewModal from './CardNewModal';
 import '../css/Kanban.css';
+
 const status = {
   todo: 0,
   progress: 1,
   done: 2
 }
+
 class KanbanBoard extends Component {
   render() {
     return (
@@ -30,7 +33,13 @@ class KanbanBoard extends Component {
         <div className="newEdit" onClick={() => this.props.actions.changeModalState(true)}></div>
         <CardModal
           className={this.props.modal.state ? "mordal" : "hide"}
-          changeModalState={this.props.actions.changeModalState}
+          actions={this.props.actions}
+          todo={this.props.todos.find(todo => todo.editable)}
+        />
+        <CardNewModal
+          className={this.props.modal.state ? "mordal" : "hide"}
+          actions={this.props.actions}
+          todo={this.props.todos}
         />
       </div>
     )

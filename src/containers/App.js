@@ -14,12 +14,14 @@ const App = ({todos, modal, actions}) => (
 App.propTypes = {
   todos: PropTypes.array.isRequired,
   modal: PropTypes.object.isRequired,
+  newmodal: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   todos: state.todos,
   modal: state.modal,
+  newmodal : state.newmodal
 })
 
 const mapDispatchToProps = dispatch => ({

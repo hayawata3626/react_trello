@@ -3,6 +3,8 @@ import {
   DELETE_TODO,
   EDIT_TODO,
   CHANGE_TODO_STATE,
+  CHANGE_TODO_EDITABLE,
+  NEW_MODAL_STATE
 } from '../constants/ActionTypes'
 
 export const status = {
@@ -17,6 +19,7 @@ const initialState = [
     title: "Redux",
     description: "Use Redux",
     status: status.todo,
+    editable: false,
     tasks: []
   }
 ]
@@ -24,14 +27,11 @@ const initialState = [
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
-      return [
-        ...state,
-        {
-          id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-          completed: false,
-          text: action.text
-        }
-      ]
+      const todo = Object.assign({}, initialState[0]);
+      todo.title = action.title
+      todo.description = action.description
+      todo.id++;
+      return [...state, todo];
 
     case DELETE_TODO:
       return state.filter(todo =>
@@ -40,10 +40,17 @@ export default function todos(state = initialState, action) {
 
     case EDIT_TODO:
       return state.map(todo =>
-        todo.id === action.id ?
-          { ...todo, text: action.text } :
-          todo
+        todo.id === action.id ? { ...todo, id: action.id, text: action.text, description: action.description } : todo
       )
+
+    case CHANGE_TODO_EDITABLE:
+      return state.map(todo => {
+        if (todo.id === action.id) {
+          todo.editable = !todo.editable
+          return todo
+        }
+        return todo
+      })
 
     case CHANGE_TODO_STATE:
       return state.map(todo => {

@@ -1,13 +1,22 @@
 .mordal {
-  position: fixed;
+  /* position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7); */
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+}
+
+.mordal_bg {
+  position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 100;
-  opacity: 1;
-  transition: opacity .5s ease-in-out;
+  z-index: 90;
 }
 
 .mordal_content {
@@ -18,6 +27,7 @@
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
+  z-index: 100000;
 }
 
 .mordal_closeButton {
@@ -28,8 +38,8 @@
   cursor: pointer;
   background: #000;
   color: #fff;
-  right: 4%;
-  top: 7%;
+  right: 1%;
+  top: 3%;
 }
 
 .mordal_closeButton:before {
